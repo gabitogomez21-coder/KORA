@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="KORA, tu asistente personal.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/kora.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <title>KORA — Asistente personal</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="KORA inicio"><span class="brand-mark">K</span><span>KORA</span></a>
+      <span class="status"><i></i> SISTEMA EN LÍNEA</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">ASISTENTE PERSONAL</div>
+        <h1>¿En qué puedo <span>ayudarte?</span></h1>
+        <p class="sub">Estoy lista para ayudarte con tus tareas digitales.</p>
+        <div class="core-wrap" aria-label="Núcleo visual de KORA">
+          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+          <div class="core"><span>K</span></div>
+          <div class="core-glow"></div>
+        </div>
+        <div class="voice-status" id="voiceStatus">KORA está escuchando cuando lo solicites</div>
+        <button class="mic-button" id="micButton" type="button"><span>●</span> HABLAR CON KORA</button>
+        <p class="hint">También puedes escribir un mensaje abajo.</p>
+      </section>
+
+      <section class="chat-panel" aria-label="Conversación">
+        <div class="panel-heading"><span>CONVERSACIÓN</span><button id="clearChat" class="text-button">Limpiar</button></div>
+        <div id="messages" class="messages" aria-live="polite">
+          <div class="message kora-message"><b>KORA</b><p>Hola. Soy KORA. Por ahora puedo responder comandos básicos, abrir sitios y preparar mensajes. ¿Qué necesitas?</p></div>
+        </div>
+        <form id="chatForm" class="composer">
+          <input id="messageInput" autocomplete="off" placeholder="Escribe un comando..." aria-label="Escribe un mensaje">
+          <button type="submit" aria-label="Enviar mensaje">➤</button>
+        </form>
+      </section>
+
+      <section class="chat-panel settings-panel" aria-label="Ajustes de KORA">
+        <div class="panel-heading"><span>AJUSTES DE KORA</span><button id="toggleSettings" class="text-button" type="button" aria-expanded="false">Abrir ajustes</button></div>
+        <div id="settingsContent" hidden>
+          <h3>Personalidad</h3>
+          <label class="voice-label" for="toneSelect">Tono al conversar</label>
+          <select id="toneSelect" class="voice-select">
+            <option value="natural">Natural y equilibrado</option>
+            <option value="formal">Formal y profesional</option>
+            <option value="cercano">Cercano y conversacional</option>
+            <option value="directo">Directo y breve</option>
+          </select>
+          <label class="voice-label" for="detailSelect">Nivel de detalle</label>
+          <select id="detailSelect" class="voice-select">
+            <option value="equilibrado">Equilibrado</option>
+            <option value="breve">Respuestas breves</option>
+            <option value="detallado">Respuestas detalladas</option>
+          </select>
+          <label class="voice-label" for="humorSelect">Humor</label>
+          <select id="humorSelect" class="voice-select">
+            <option value="moderado">Moderado</option>
+            <option value="poco">Poco</option>
+            <option value="frecuente">Más frecuente</option>
+          </select>
+          <p class="settings-note">Estas preferencias se guardan en este dispositivo. En esta versión ajustan la configuración local; todavía no cambian un modelo de IA conectado.</p>
+          <h3>Voz</h3>
+          <label class="voice-label" for="voiceSelect">Voz disponible en Android/Chrome</label>
+          <select id="voiceSelect" class="voice-select"><option value="">Voz predeterminada del dispositivo</option></select>
+          <button id="testVoice" class="text-button" type="button">Probar voz del dispositivo</button>
+          <label class="voice-label" for="voiceFile">Audio MP3 de referencia</label>
+          <input id="voiceFile" class="voice-select" type="file" accept=".mp3,audio/mpeg">
+          <audio id="voicePreview" controls hidden></audio>
+          <p id="voiceFileStatus" class="settings-note">Podés cargar un MP3 para guardarlo como referencia y escucharlo aquí. Esto no clona ni reproduce automáticamente esa voz en las respuestas.</p>
+          <p class="settings-note">Para generar respuestas con una voz personalizada hace falta un servicio de síntesis compatible, un backend seguro y autorización para usar la voz de referencia. No se enviará el archivo a ningún servicio desde esta versión.</p>
+          <div class="settings-actions"><button id="stopSpeech" class="text-button" type="button">Detener audio</button><button id="removeVoiceFile" class="text-button" type="button">Quitar MP3</button><button id="exportData" class="text-button" type="button">Exportar mis datos</button></div>
+        </div>
+      </section>
+
+      <section class="tools-section">
+        <div class="section-heading"><div class="eyebrow">ACCESO RÁPIDO</div><h2>Herramientas</h2></div>
+        <div class="tool-grid">
+          <button class="tool-card" data-command="Abrí Google"><span class="tool-icon">⌕</span><b>Buscar en la web</b><small>Abrir Google</small></button>
+          <button class="tool-card" data-command="Abrí YouTube"><span class="tool-icon">▶</span><b>YouTube</b><small>Abrir videos</small></button>
+          <button class="tool-card" data-command="Preparar un mensaje de WhatsApp"><span class="tool-icon">◉</span><b>WhatsApp</b><small>Preparar mensaje</small></button>
+          <button class="tool-card" data-command="Ayuda"><span class="tool-icon">?</span><b>Ayuda</b><small>Ver comandos</small></button>
+        </div>
+      </section>
+
+      <section class="notice">
+        <span class="notice-icon">ⓘ</span>
+        <div><b>Versión de desarrollo</b><p>Memoria e historial locales, selección de voz disponible y exportación de datos. La conexión con IA está preparada, pero requiere publicar el backend y configurar sus credenciales.</p></div>
+      </section>
+    </main>
+    <footer>KORA <span>•</span> V0.7 PWA</footer>
+  </div>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "KORA — Asistente personal",
+  "short_name": "KORA",
+  "description": "Tu asistente personal.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1118",
+  "theme_color": "#101820",
+  "icons": [
+    {
+      "src": "./icons/kora.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
